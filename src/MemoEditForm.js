@@ -1,15 +1,24 @@
 import { useState } from "react";
 import "./MemoEditForm.css";
 
-function MemoEditForm({ memo, handleEditClick }) {
+function MemoEditForm({ memo, handleEditClick, handleDeleteClick }) {
   const [value, setValue] = useState(memo.content);
   const [clickedButton, setClickedButton] = useState(null);
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (clickedButton === "edit") {
-      handleEditClick({ ...memo, content: value });
+
+    switch (clickedButton) {
+      case "edit":
+        handleEditClick({ ...memo, content: value });
+        break;
+      case "delete":
+        handleDeleteClick(memo.id);
+        break;
+      default:
+        break;
     }
+
     setClickedButton(null);
   }
 
@@ -18,7 +27,7 @@ function MemoEditForm({ memo, handleEditClick }) {
       <textarea value={value} onChange={(e) => setValue(e.target.value)} />
       <div className="button-container">
         <button onClick={() => setClickedButton("edit")}>編集</button>
-        <button>削除</button>
+        <button onClick={() => setClickedButton("delete")}>削除</button>
       </div>
     </form>
   );

@@ -31,6 +31,12 @@ function MemoApp({ memos }) {
     setMemoInEdit(null);
   }
 
+  function handleDeleteClick(id) {
+    const updatedMemos = allMemos.filter((memo) => memo.id !== id);
+    saveMemos(updatedMemos);
+    setMemoInEdit(null);
+  }
+
   function saveMemos(memos) {
     setAllMemos(memos);
     localStorage.setItem("allMemos", JSON.stringify(memos));
@@ -38,7 +44,11 @@ function MemoApp({ memos }) {
 
   const memoEditForm = memoInEdit ? (
     <div id="memo-edit-form">
-      <MemoEditForm memo={memoInEdit} handleEditClick={handleEditClick} />
+      <MemoEditForm
+        memo={memoInEdit}
+        handleEditClick={handleEditClick}
+        handleDeleteClick={handleDeleteClick}
+      />
     </div>
   ) : null;
 
