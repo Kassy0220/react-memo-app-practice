@@ -22,3 +22,7 @@ ul {
 .memo-item button:hover {
   text-decoration: underline;
 }
+
+#memo-status {
+  color: #666666;
+}
