@@ -14,10 +14,26 @@ function MemoApp({ memos }) {
   }
 
   function handleEditClick(memo) {
-    const updatedMemos = [...allMemos, memo];
-    setAllMemos(updatedMemos);
-    localStorage.setItem("allMemos", JSON.stringify(updatedMemos));
+    const targetID = memo.id;
+    const targetMemoIndex = allMemos.findIndex((memo) => memo.id === targetID);
+
+    if (targetMemoIndex === -1) {
+      saveMemos([...allMemos, memo]);
+    } else {
+      const newMemos = [...allMemos];
+      const updatedMemo = {
+        ...newMemos[targetMemoIndex],
+        content: memo.content,
+      };
+      newMemos[targetMemoIndex] = updatedMemo;
+      saveMemos(newMemos);
+    }
     setMemoInEdit(null);
+  }
+
+  function saveMemos(memos) {
+    setAllMemos(memos);
+    localStorage.setItem("allMemos", JSON.stringify(memos));
   }
 
   const memoEditForm = memoInEdit ? (
@@ -35,7 +51,10 @@ function MemoApp({ memos }) {
             <MemoCreateButton handleCreateClick={handleCreateClick} />
           </div>
           <div id="memo-list">
-            <MemoList memos={allMemos} />
+            <MemoList
+              memos={allMemos}
+              handleMemoItemClick={(memo) => setMemoInEdit(memo)}
+            />
           </div>
         </div>
         {memoEditForm}
