@@ -1,7 +1,11 @@
 import "./MemoCreateButton.css";
 
-function MemoCreateButton() {
-  return <button id="create-button">+</button>;
+function MemoCreateButton({ handleCreateClick }) {
+  return (
+    <button id="create-button" onClick={handleCreateClick}>
+      +
+    </button>
+  );
 }
 
 export default MemoCreateButton;
