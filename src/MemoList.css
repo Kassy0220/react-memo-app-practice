@@ -1,0 +1,24 @@
+ul {
+  padding: 0;
+}
+
+.memo-item {
+  list-style-type: none;
+  line-height: 1.5;
+  background: #ffffff;
+  margin-bottom: 5px;
+  padding: 0.5em;
+  border-left: solid 6px #4689ff;
+  border-top: solid 2px #cccccc;
+  border-right: solid 2px #cccccc;
+  border-bottom: solid 2px #cccccc;
+}
+
+.memo-item button {
+  border: none;
+  background-color: #ffffff;
+}
+
+.memo-item button:hover {
+  text-decoration: underline;
+}

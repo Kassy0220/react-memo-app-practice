@@ -1,5 +1,7 @@
+import "./MemoCreateButton.css";
+
 function MemoCreateButton() {
-  return <button>+</button>;
+  return <button id="create-button">+</button>;
 }
 
 export default MemoCreateButton;

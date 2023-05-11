@@ -1,9 +1,13 @@
+import "./MemoEditForm.css";
+
 function MemoEditForm({ memo }) {
   return (
     <form>
       <textarea value={memo.content} />
-      <button>編集</button>
-      <button>削除</button>
+      <div className="button-container">
+        <button>編集</button>
+        <button>削除</button>
+      </div>
     </form>
   );
 }
