@@ -10,9 +10,21 @@ function MemoApp({ memos }) {
   const [memoInEdit, setMemoInEdit] = useState(null);
 
   function handleCreateClick() {
+    if (memoInEdit) {
+      return;
+    }
+
     const newMemo = { id: uuidv4(), content: "" };
     saveMemos([...allMemos, newMemo]);
     setMemoInEdit(newMemo);
+  }
+
+  function handleMemoItemClick(memo) {
+    if (memoInEdit) {
+      return;
+    }
+
+    setMemoInEdit(memo);
   }
 
   function handleEditClick(updatedMemo) {
@@ -57,7 +69,7 @@ function MemoApp({ memos }) {
           <div id="memo-list">
             <MemoList
               memos={allMemos}
-              handleMemoItemClick={(memo) => setMemoInEdit(memo)}
+              handleMemoItemClick={handleMemoItemClick}
             />
           </div>
         </div>
