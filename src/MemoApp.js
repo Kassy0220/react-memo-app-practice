@@ -10,24 +10,18 @@ function MemoApp({ memos }) {
   const [memoInEdit, setMemoInEdit] = useState(null);
 
   function handleCreateClick() {
-    setMemoInEdit({ id: uuidv4(), content: "新規メモ" });
+    const newMemo = { id: uuidv4(), content: "" };
+    saveMemos([...allMemos, newMemo]);
+    setMemoInEdit(newMemo);
   }
 
-  function handleEditClick(memo) {
-    const targetID = memo.id;
-    const targetMemoIndex = allMemos.findIndex((memo) => memo.id === targetID);
-
-    if (targetMemoIndex === -1) {
-      saveMemos([...allMemos, memo]);
-    } else {
-      const newMemos = [...allMemos];
-      const updatedMemo = {
-        ...newMemos[targetMemoIndex],
-        content: memo.content,
-      };
-      newMemos[targetMemoIndex] = updatedMemo;
-      saveMemos(newMemos);
-    }
+  function handleEditClick(updatedMemo) {
+    const newMemos = allMemos.map((memo) =>
+      memo.id === updatedMemo.id
+        ? { ...memo, content: updatedMemo.content }
+        : memo
+    );
+    saveMemos(newMemos);
     setMemoInEdit(null);
   }
 
