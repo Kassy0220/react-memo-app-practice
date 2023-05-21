@@ -1,0 +1,24 @@
+h1 {
+  text-align: center;
+  padding: 0.3em;
+}
+
+.flexbox {
+  display: flex;
+  padding: 1em;
+}
+
+#menu {
+  width: 50%;
+}
+
+#memo-app {
+  width: 600px;
+  background: #d7eeff;
+  border-radius: 20px;
+}
+
+#memo-edit-form {
+  width: 50%;
+  margin-left: auto;
+}

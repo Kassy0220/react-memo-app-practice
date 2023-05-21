@@ -1,0 +1,34 @@
+ul {
+  padding: 0;
+}
+
+.memo-item {
+  list-style-type: none;
+  line-height: 1.5;
+  background: #ffffff;
+  margin-bottom: 5px;
+  height: 2.5em;
+  border-left: solid 6px #4689ff;
+  border-top: solid 2px #cccccc;
+  border-right: solid 2px #cccccc;
+  border-bottom: solid 2px #cccccc;
+  cursor: pointer;
+}
+
+.memo-item button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.memo-item button:hover {
+  text-decoration: underline;
+}
+
+#memo-status {
+  color: #666666;
+}

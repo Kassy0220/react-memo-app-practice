@@ -1,0 +1,16 @@
+#create-button {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 0.5;
+  border-radius: 50%;
+  color: #668ad8;
+  background: #ffffff;
+  border: solid 2px #668ad8;
+  font-weight: bold;
+  font-size: 150%;
+}
+
+#create-button:hover {
+  background-color: #b3e1ff;
+}
