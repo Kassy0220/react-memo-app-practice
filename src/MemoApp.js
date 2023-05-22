@@ -3,10 +3,11 @@ import { v4 as uuidv4 } from "uuid";
 import MemoCreateButton from "./MemoCreateButton";
 import MemoList from "./MemoList";
 import MemoEditForm from "./MemoEditForm";
+import { useMemos } from "./hooks/useMemos";
 import "./MemoApp.css";
 
-function MemoApp({ memos }) {
-  const [allMemos, setAllMemos] = useState(memos);
+function MemoApp() {
+  const { allMemos, createMemo, updateMemo, deleteMemo } = useMemos();
   const [memoInEdit, setMemoInEdit] = useState(null);
 
   function handleCreateClick() {
@@ -15,7 +16,7 @@ function MemoApp({ memos }) {
     }
 
     const newMemo = { id: uuidv4(), content: "" };
-    saveMemos([...allMemos, newMemo]);
+    createMemo(newMemo);
     setMemoInEdit(newMemo);
   }
 
@@ -28,24 +29,13 @@ function MemoApp({ memos }) {
   }
 
   function handleEditClick(updatedMemo) {
-    const newMemos = allMemos.map((memo) =>
-      memo.id === updatedMemo.id
-        ? { ...memo, content: updatedMemo.content }
-        : memo
-    );
-    saveMemos(newMemos);
+    updateMemo(updatedMemo);
     setMemoInEdit(null);
   }
 
   function handleDeleteClick(id) {
-    const updatedMemos = allMemos.filter((memo) => memo.id !== id);
-    saveMemos(updatedMemos);
+    deleteMemo(id);
     setMemoInEdit(null);
-  }
-
-  function saveMemos(memos) {
-    setAllMemos(memos);
-    localStorage.setItem("allMemos", JSON.stringify(memos));
   }
 
   const memoEditForm = memoInEdit ? (
