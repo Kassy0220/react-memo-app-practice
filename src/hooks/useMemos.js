@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 
 export function useMemos() {
-  const [allMemos, setAllMemos] = useState([]);
+  const [memos, setMemos] = useState([]);
   const localStorageKey = "allMemos";
 
   useEffect(() => {
     const allMemos = JSON.parse(localStorage.getItem(localStorageKey));
     if (allMemos) {
-      setAllMemos(allMemos);
+      setMemos(allMemos);
     }
   }, []);
 
   function createMemo(newMemo) {
-    saveMemos([...allMemos, newMemo]);
+    saveMemos([...memos, newMemo]);
   }
 
   function updateMemo(updatedMemo) {
-    const newMemos = allMemos.map((memo) =>
+    const newMemos = memos.map((memo) =>
       memo.id === updatedMemo.id
         ? { ...memo, content: updatedMemo.content }
         : memo
@@ -25,14 +25,14 @@ export function useMemos() {
   }
 
   function deleteMemo(id) {
-    const newMemos = allMemos.filter((memo) => memo.id !== id);
+    const newMemos = memos.filter((memo) => memo.id !== id);
     saveMemos(newMemos);
   }
 
   function saveMemos(memos) {
-    setAllMemos(memos);
+    setMemos(memos);
     localStorage.setItem("allMemos", JSON.stringify(memos));
   }
 
-  return { allMemos, createMemo, updateMemo, deleteMemo };
+  return { allMemos: memos, createMemo, updateMemo, deleteMemo };
 }
