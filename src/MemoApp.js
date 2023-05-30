@@ -55,9 +55,7 @@ function MemoApp() {
       <Header />
       <div className="flexbox">
         <div id="menu">
-          <div id="memo-create-button">
-            <MemoCreateButton handleCreateClick={handleCreateClick} />
-          </div>
+          <MemoCreateButton handleCreateClick={handleCreateClick} />
           <div id="memo-list">
             <MemoList
               memos={allMemos}
