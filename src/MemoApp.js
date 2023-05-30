@@ -1,52 +1,58 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import MemoCreateButton from "./MemoCreateButton";
 import MemoList from "./MemoList";
 import MemoEditForm from "./MemoEditForm";
 import Header from "./Header";
 import { useMemos } from "./hooks/useMemos";
+import { LogInContext } from "./contexts/LogInContext";
 import "./MemoApp.css";
 
 function MemoApp() {
   const { allMemos, createMemo, updateMemo, deleteMemo } = useMemos();
-  const [memoInEdit, setMemoInEdit] = useState(null);
+  const [focusedMemo, setFocusedMemo] = useState(null);
+  const { loggedIn } = useContext(LogInContext);
 
   function handleCreateClick() {
-    if (memoInEdit) {
+    if (focusedMemo) {
       return;
     }
 
     const newMemo = { id: uuidv4(), content: "" };
     createMemo(newMemo);
-    setMemoInEdit(newMemo);
+    setFocusedMemo(newMemo);
   }
 
   function handleMemoItemClick(memo) {
-    if (memoInEdit) {
+    if (focusedMemo && loggedIn) {
       return;
     }
 
-    setMemoInEdit(memo);
+    setFocusedMemo(memo);
   }
 
   function handleEditClick(updatedMemo) {
     updateMemo(updatedMemo);
-    setMemoInEdit(null);
+    setFocusedMemo(null);
   }
 
   function handleDeleteClick(id) {
     deleteMemo(id);
-    setMemoInEdit(null);
+    setFocusedMemo(null);
   }
 
-  const memoEditForm = memoInEdit ? (
+  const memoEditForm = focusedMemo ? (
     <div id="memo-edit-form">
       <MemoEditForm
-        memo={memoInEdit}
+        memo={focusedMemo}
         handleEditClick={handleEditClick}
         handleDeleteClick={handleDeleteClick}
       />
     </div>
+  ) : null;
+
+  const memoDetail = focusedMemo ? (
+    <div id="memo-detail">{focusedMemo.content}</div>
   ) : null;
 
   return (
@@ -63,7 +69,7 @@ function MemoApp() {
             />
           </div>
         </div>
-        {memoEditForm}
+        {loggedIn ? memoEditForm : memoDetail}
       </div>
     </div>
   );
