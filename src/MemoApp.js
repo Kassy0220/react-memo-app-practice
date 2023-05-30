@@ -1,17 +1,17 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import MemoCreateButton from "./MemoCreateButton";
 import MemoList from "./MemoList";
 import MemoEditForm from "./MemoEditForm";
 import Header from "./Header";
 import { useMemos } from "./hooks/useMemos";
-import { LogInContext } from "./contexts/LogInContext";
+import { useLoggedIn } from "./hooks/useLoggedIn";
 import "./MemoApp.css";
 
 function MemoApp() {
   const { allMemos, createMemo, updateMemo, deleteMemo } = useMemos();
   const [focusedMemo, setFocusedMemo] = useState(null);
-  const { loggedIn } = useContext(LogInContext);
+  const { loggedIn } = useLoggedIn();
 
   function handleCreateClick() {
     if (focusedMemo) {

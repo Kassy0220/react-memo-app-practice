@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { LogInContext } from "./contexts/LogInContext";
+import { useLoggedIn } from "./hooks/useLoggedIn";
 import "./LoginButton.css";
 
 function LoginButton() {
-  const { loggedIn, setLoggedIn } = useContext(LogInContext);
+  const { loggedIn, setLoggedIn } = useLoggedIn();
   const text = loggedIn ? "ログアウト" : "ログイン";
   return (
     <button id="login-button" onClick={() => setLoggedIn(!loggedIn)}>

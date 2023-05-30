@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { LogInContext } from "./contexts/LogInContext";
+import { useLoggedIn } from "./hooks/useLoggedIn";
 import "./MemoCreateButton.css";
 
 function MemoCreateButton({ handleCreateClick }) {
-  const { loggedIn } = useContext(LogInContext);
+  const { loggedIn } = useLoggedIn();
   return (
     loggedIn && (
       <div id="memo-create-button">
