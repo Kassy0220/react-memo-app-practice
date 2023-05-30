@@ -41,6 +41,14 @@ function MemoApp() {
     setFocusedMemo(null);
   }
 
+  function removeFocusedMemo(e) {
+    if (e.target.className.includes("clickable-element")) {
+      return;
+    }
+
+    setFocusedMemo(null);
+  }
+
   const memoEditForm = focusedMemo ? (
     <div id="memo-edit-form">
       <MemoEditForm
@@ -52,11 +60,13 @@ function MemoApp() {
   ) : null;
 
   const memoDetail = focusedMemo ? (
-    <div id="memo-detail">{focusedMemo.content}</div>
+    <div id="memo-detail" className="clickable-element">
+      {focusedMemo.content}
+    </div>
   ) : null;
 
   return (
-    <div id="memo-app">
+    <div id="memo-app" onClick={removeFocusedMemo}>
       <h1>React Memo App</h1>
       <Header />
       <div className="flexbox">

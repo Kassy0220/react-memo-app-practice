@@ -6,7 +6,11 @@ function MemoCreateButton({ handleCreateClick }) {
   return (
     loggedIn && (
       <div id="memo-create-button">
-        <button id="create-button" onClick={handleCreateClick}>
+        <button
+          id="create-button"
+          class="clickable-element"
+          onClick={handleCreateClick}
+        >
           +
         </button>
       </div>
