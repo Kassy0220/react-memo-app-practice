@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import MemoCreateButton from "./MemoCreateButton";
 import MemoList from "./MemoList";
 import MemoEditForm from "./MemoEditForm";
+import Header from "./Header";
 import { useMemos } from "./hooks/useMemos";
 import "./MemoApp.css";
 
@@ -51,6 +52,7 @@ function MemoApp() {
   return (
     <div id="memo-app">
       <h1>React Memo App</h1>
+      <Header />
       <div className="flexbox">
         <div id="menu">
           <div id="memo-create-button">
