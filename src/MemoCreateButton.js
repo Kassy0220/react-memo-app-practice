@@ -8,7 +8,7 @@ function MemoCreateButton({ handleCreateClick }) {
       <div id="memo-create-button">
         <button
           id="create-button"
-          class="clickable-element"
+          className="clickable-element"
           onClick={handleCreateClick}
         >
           +
