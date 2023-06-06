@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { LogInContext } from "../contexts/LogInContext";
+import { LogInContextValue } from "../contexts/LogInProvider";
 
 export function useLoggedIn() {
-  const { loggedIn, setLoggedIn } = useContext(LogInContext);
+  const { loggedIn, setLoggedIn } = LogInContextValue();
 
   return { loggedIn, setLoggedIn };
 }
