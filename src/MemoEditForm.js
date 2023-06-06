@@ -25,10 +25,20 @@ function MemoEditForm({ memo, handleEditClick, handleDeleteClick }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <textarea {...memoInput} />
+      <textarea className="clickable-element" {...memoInput} />
       <div className="button-container">
-        <button onClick={() => setClickedButton("edit")}>編集</button>
-        <button onClick={() => setClickedButton("delete")}>削除</button>
+        <button
+          className="clickable-element"
+          onClick={() => setClickedButton("edit")}
+        >
+          編集
+        </button>
+        <button
+          className="clickable-element"
+          onClick={() => setClickedButton("delete")}
+        >
+          削除
+        </button>
       </div>
     </form>
   );

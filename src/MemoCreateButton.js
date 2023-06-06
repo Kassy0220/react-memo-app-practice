@@ -1,10 +1,20 @@
+import { useLoggedIn } from "./hooks/useLoggedIn";
 import "./MemoCreateButton.css";
 
 function MemoCreateButton({ handleCreateClick }) {
+  const { loggedIn } = useLoggedIn();
   return (
-    <button id="create-button" onClick={handleCreateClick}>
-      +
-    </button>
+    loggedIn && (
+      <div id="memo-create-button">
+        <button
+          id="create-button"
+          className="clickable-element"
+          onClick={handleCreateClick}
+        >
+          +
+        </button>
+      </div>
+    )
   );
 }
 

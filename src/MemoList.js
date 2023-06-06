@@ -8,8 +8,11 @@ function MemoList({ memos, handleMemoItemClick }) {
   const memoList = memos.length ? (
     <ul>
       {memos.map((memo) => (
-        <li className="memo-item" key={memo.id}>
-          <button onClick={() => handleMemoItemClick(memo)}>
+        <li className="memo-item clickable-element" key={memo.id}>
+          <button
+            className="clickable-element"
+            onClick={() => handleMemoItemClick(memo)}
+          >
             {memo.content.split("\n")[0]}
           </button>
         </li>
